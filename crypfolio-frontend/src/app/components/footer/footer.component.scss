@@ -1,0 +1,99 @@
+.container {
+    height: 20vh;
+    background-color: #1F1F1F;
+    color: #c2c2c2;
+    display: flex;
+    justify-content: center;
+    padding-top: 5vh;
+    .donaciones {
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .botonesDonacion {
+            margin-top: 1vh;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            .btc, .eth{
+                height: 35px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                background-color: rgba(212, 212, 212, 0.144);
+                border-radius: 5px;
+                padding: 10px;
+                cursor: pointer;
+                transition: 0.5s;
+                img {
+                    margin-right: 10px;
+                }
+            }
+            .btc{
+                margin-right: 2vw;
+            }
+            .btc:hover {
+                box-shadow: 0px 6px 15px rgba(184, 184, 184, 0.11);
+                background-color:  #f89d2e62;
+            }
+            .eth:hover {
+                box-shadow: 0px 6px 15px rgba(184, 184, 184, 0.11);
+                background-color:  #6378d662;
+            }
+        }
+        .donateWindow {
+            margin-top: 2vh;
+            background-color: rgba(212, 212, 212, 0.144);
+            border-radius: 5px;
+        }
+        .donateWindow.btc {
+            background-color:  #f89d2e62;
+        }
+        .donateWindow.eth {
+            background-color:  #6378d662;
+        }
+    }
+    .info {
+        width: 30%;
+        flex-direction: column;
+        align-items: center;
+        .logo {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1vh;
+        }
+        .devInfo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}
+
+@media (max-width: 750px){
+    * {
+        font-size: 0.85rem;
+    }
+    .container {
+        height: auto !important;
+        flex-direction: column;
+        // justify-content: center;
+        align-items: center;
+        padding-bottom: 4vh;
+        .donaciones {
+            width: 90%;
+            .donateWindow {
+                width: 70%;
+                word-wrap: break-word;
+            }
+        }
+        .info {
+            margin-top: 4vh;
+            width: 90%;
+            display: flex;
+            align-items: center;
+        }
+    }
+}

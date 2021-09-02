@@ -1,0 +1,577 @@
+@import "~src/assets/fontawesome/scss/fontawesome.scss";
+@import "~src/assets/fontawesome/scss/solid.scss";
+
+.container {
+    height: auto;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    width: 100%;
+    background-color: #181818;
+    background-image: url("/assets/images/background/crypdomBg.png");
+    background-size: cover;
+    background-image: linear-gradient(-225deg, #492e5581 0%, #7a18f244 48%, #4901ff4d 100%);
+    color: white;
+    .portfolio-container {
+        max-width: 1350px;
+        margin: 0 auto;
+        .topInfo {
+            display: flex;
+            // justify-content: space-between;
+            flex-direction: column;
+            margin-top: 5vh;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 5px;
+            color: white;
+            border-left: 1px solid rgba(105, 105, 105, 0.247);
+            border-top: 1px solid rgba(105, 105, 105, 0.247);
+            box-shadow: 20px 20px 50px rgba(0,0,0,0.5);
+            padding: 2em;
+            .balance {
+                display: flex;
+                flex-direction: row;
+                // margin-top: 5vh;
+                align-items: center;
+                justify-content: stretch;
+                margin: 0 auto;
+                .balanceData {
+                    flex-direction: column;
+                    .balanceFiat {
+                        flex-direction: row;
+                        #fiat {
+                            font-size: 2.2em;
+                            letter-spacing: 0.02em;
+                            font-weight: bolder;
+                            font-family: "Yantramanav", sans-serif;
+                            margin-right: 1vw;
+                        }
+                        #percentageChangeP {
+                            color: #22ff77;
+                            font-size: 1.1em;
+                        }
+                        #percentageChangeN {
+                            color: #dd0000;
+                            font-size: 1.1em;
+                        }
+                    }
+                    .balanceBTC {
+                        color: #C2C2C2;
+                        margin-left: 0.2vw
+                    }
+                    .beneficioTotal {
+                        color: #C2C2C2;
+                        margin-top: 4vh;
+                        font-size: 0.9em;
+                    }
+                }
+                .divider {
+                    border-left: 1px solid rgba(105, 105, 105, 0.247);
+                    height: 20vh;
+                    margin-left: 4vw;
+                    margin-right: 1vw;
+                }
+                .graph {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                }
+                .top5 {
+                    padding-left: 2vw;
+                    .top5row {
+                        // width: 27vw;
+                        display: grid;
+                        grid-auto-flow: row;
+                        grid-template-columns: repeat(1, auto);
+                        grid-template-rows: repeat(3, auto);
+                        align-content: center;
+                        .coin {
+                            background-color:rgba(184, 184, 184, 0.144);
+                            border-radius: 5px;
+                            padding: 0.3em 0.8em;
+                            margin-bottom: 1vh;
+                            display: flex;
+                            align-items: center;
+                            img {
+                                width: 24px;
+                                margin-right: 1vh;
+                            }
+                            .top5data {
+                                margin-left: 0.5vw;
+                                display: flex;
+                                flex-direction: column;
+                                width: 5vw;
+                                .symbol {
+                                    font-size: 0.7em;
+                                }
+                                .coin-name a {
+                                    color: white;
+                                    text-decoration: none;
+                                }
+                            }
+                            .quantity {
+                                margin-left: 2vw;
+                            }
+                            .porcentaje {
+                                margin-left: 2vw;
+                            }
+                        }
+                    }
+                }
+            }
+            .noData1 {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .emptyMsg {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-top: 2vh;
+                    h4 {
+                        margin-top: 1vh;
+                        font-family: 'Poppins';
+                        font-weight: 400;
+                    }
+                }
+            }
+        }
+    }
+    .myCoinListContainer {
+        display: flex;
+        flex-direction: column;
+        margin-top: 7vh;
+        background-color: rgba(255, 255, 255, 0.15);
+        border-radius: 5px;
+        color: white;
+        border-left: 1px solid rgba(105, 105, 105, 0.247);
+        border-top: 1px solid rgba(105, 105, 105, 0.247);
+        box-shadow: 20px 20px 50px rgba(0,0,0,0.5);
+        padding: 2em;
+        margin-bottom: 5vh;
+        .myCoinList {
+            margin: 2vh 5vw;
+            .table-list {
+                width: 100%;
+                border-collapse: separate;
+                border-spacing: 0 1vh;
+                thead tr th {
+                    text-align: right;
+                    text-transform: uppercase;
+                    font-size: small;
+                    transform: translateY(0.95vh);
+                }
+                thead tr > th:first-child {
+                    text-align: left;
+                    padding-left: 2vw;
+                }
+                thead tr > th:last-child {
+                    padding-right: 2vw;
+                }
+                tbody .trDeleteMode:hover {
+                    // box-shadow: 0px 6px 15px rgba(184, 184, 184, 0.11);
+                    // background-color: rgba(212, 212, 212, 0.144);
+                    box-shadow: 0px 3px 15px #dd00002c;
+                    background-color: #dd00007c;
+                    cursor: pointer;
+                }
+                tbody tr .editTd .divEditTd {
+                    visibility: hidden;
+                    padding: 0 0.5vw;
+                }
+                .tbody-list {
+                    height: 5vh;
+                    background-color: rgba(212, 212, 212, 0.274);
+                    border-radius: 5px;
+                    td {
+                        text-align: right;
+                        padding: 0.3em 0;
+                    }
+                    td:first-child {
+                        border-top-left-radius: 5px;
+                        border-bottom-left-radius: 5px;
+                    }
+                    td:last-child {
+                        border-top-right-radius: 5px;
+                        border-bottom-right-radius: 5px;
+                    }
+                    .nameImg {
+                        padding-left: 2vw;
+                        display: flex;
+                        align-items: center;
+                        a {
+                            color: white;
+                            text-decoration: none;
+                        }
+                        .coin-symbol {
+                            text-transform: uppercase;
+                            font-size: 0.9rem;
+                            color: #C2C2C2;
+                            margin-left: 1.5rem;
+                        }
+                    }
+                    .coin-percentage-change {
+                        padding-right: 2vw;
+                    }
+                    .positivo {
+                        color: #22ff77;
+                    }
+                    .negativo {
+                        color: #dd0000;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.addCrypto {
+    display: flex;
+    flex-direction: column;
+    .formAddCrypto form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        .tablaAddCrypto {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 1vh;
+            thead tr th {
+                text-align: center;
+                text-transform: uppercase;
+                width: 33%;
+                text-transform: uppercase;
+                font-size: small;
+                transform: translateY(0.95vh);
+            }
+            thead tr > th:first-child {
+                text-align: left;
+                padding-left: 2vw;
+            }
+            .bodyAddCrypto {
+                height: 5vh;
+                background-color: rgba(184, 184, 184, 0.144);
+                tr td {
+                    text-align: center;
+                    width: 33%;
+                }
+                tr > td:first-child {
+                    border-top-left-radius: 5px;
+                    border-bottom-left-radius: 5px;
+                }
+                tr > td:last-child {
+                    border-top-right-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                }
+                .monedaInput {
+                    display: flex;
+                    align-items: center;
+                    max-width: 18vw;
+                    padding-left: 2vw;
+                    ::ng-deep .autocomplete-container {
+                        height: 3vh;
+                        box-shadow: none;
+                        ::ng-deep .input-container .x i {
+                            color: white;
+                        }
+                        ::ng-deep .input-container input {
+                            max-height: 3vh;
+                            // background-color: rgba(184, 184, 184, 0.144);
+                            background-color: transparent;
+                            border-bottom: 1px solid #c2c2c2;
+                            color: white;
+                        }
+                        ::ng-deep input::placeholder {
+                            color: #C2C2C2;
+                        }
+                        ::ng-deep .suggestions-container ul li a {
+                            max-height: 4vh;
+                            padding: 5px 8px;
+                        }
+                        ::ng-deep .suggestions-container {
+                            background-color: #1F1F1F;
+                        }
+                        ::ng-deep .not-found {
+                            background-color: #1f1f1f;
+                            border: none;
+                            ::ng-deep div {
+                                border: none;
+                            }
+                        }
+                    }
+                }
+                .cantidadInput input, .precioInput input {
+                    all: unset;
+                    // background-color: rgba(184, 184, 184, 0.144);
+                    border-bottom: 1px solid #c2c2c2;
+                    color: white;
+                }
+            }
+        }
+        .addError {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            background-color: #dd000044;
+            height: 3vh;
+            border-radius: 5px;
+            margin-bottom: 1vh;
+            font-size: 0.95em;
+        }
+        .divButtonAddCrypto {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            .btn-cancel{
+                background-color:  rgba(184, 184, 184, 0.144);
+                border: 0;
+                color: #1d1d1d;
+                color: white;
+                cursor: pointer;
+                font-size: 0.95em;
+                padding: 5px 10px;
+                transition: all 0.5s;
+                border-radius: 5px;
+                width: auto;
+                &:hover {
+                    background-color: #dd0000;
+                    box-shadow: 0px 6px 15px #dd000046;
+                }
+            }
+            .btn-confirm{
+                background-color:  rgba(184, 184, 184, 0.144);
+                border: 0;
+                color: #1d1d1d;
+                color: white;
+                cursor: pointer;
+                font-size: 0.95em;
+                padding: 5px 7px;
+                transition: all 0.5s;
+                border-radius: 5px;
+                width: auto;
+                margin-left: 5px;
+                &:hover {
+                    background-color: #22ff77;
+                    box-shadow: 0px 6px 15px #22ff7746;
+                }
+            }
+        }
+    }
+    .divShowAddCrypto {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        .add-btn, .trash-btn {
+            background-color:  rgba(184, 184, 184, 0.144);
+            border: 0;
+            color: #1d1d1d;
+            color: white;
+            cursor: pointer;
+            font-size: 0.95em;
+            padding: 5px 7px;
+            transition: all 0.5s;
+            border-radius: 5px;
+            width: auto;
+            margin-left: 5px;
+        }
+        .add-btn:hover {
+            background-color: #bb6eee;
+            box-shadow: 0px 6px 15px #bb6eee41;
+        }
+        .trash-btn:hover {
+            background-color: #dd0000;
+            box-shadow: 0px 6px 15px #dd000046;
+        }
+        .deleteMode {
+            background-color: #dd0000;
+        }
+    }
+}
+
+/* Define the stop colors */
+#gradient-0 stop {
+	stop-color: #506ef9;
+}
+#gradient-0 stop[offset="0"] {
+	stop-opacity: 0.25;
+}
+#gradient-0 stop[offset="1"] {
+	stop-opacity: 0;
+}
+
+/* Apply the gradients */
+// .highcharts-plot-background {
+// 	fill: url(#gradient-1);
+// }
+.highcharts-color-0 {
+  fill: #506ef9;
+  stroke: #506ef9;
+}
+.highcharts-color-0 .highcharts-area {
+	fill-opacity: 1;
+	fill: url(#gradient-0);
+}
+.highcharts-title {
+    font-family: "Roboto", sans-serif;
+    font-weight: bolder;
+    font-size: 0.9em;
+}
+.pie {
+    height: 20vh;
+}
+
+@media (max-width: 750px){
+    * {
+        font-size: 0.85rem;
+    }
+    .portfolio-container {
+        margin: 0 2vw !important;
+    }
+    .topInfo {
+        padding: 2vh 5vw !important;
+        .balance {
+            width: 100%;
+            flex-direction: column !important;
+            .balanceData {
+                width: 100%;
+                text-align: center;
+                .balanceFiat {
+                    #fiat {
+                        margin-right: 4vw !important;
+                    }
+                }
+            }
+            .divider {
+                display: none !important;
+            }
+            .top5 {
+                width: 100% !important;
+                margin-top: 2vh;
+                .top5data {
+                    width: 100% !important;
+                    justify-content: center;
+                    .top5row {
+                        width: 100% !important;
+                        display: flex;
+                        flex-direction: column;
+                    }
+                    .coin {
+                        width: 100% !important;
+                    }
+                }
+            }
+        }
+    }
+
+    .noData1 img {
+        width: 200px;
+    }
+    .myCoinListContainer {
+        padding: 2vh 5vw !important;
+        margin-top: 4vh !important;
+        .myCoinList {
+            margin: 0 !important;
+            .coin-symbol {
+                display: none;
+            }
+            .table-list {
+                display: block;
+                tbody, td, tr {
+                    display: block;
+                }
+                thead {
+                    display: none;
+                }
+                tbody .tbody-list {
+                    padding: 1vh 0;
+                    margin-bottom: 2vh;
+                    height: auto !important;
+                    .nameImg {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        img {
+                            width: 20px;
+                            height: 20px;
+                        }
+                }
+                }
+                td {
+                    border: none;
+		            position: relative;
+		            padding-left: 50%;
+                    margin-right: 10%;
+                }
+                td:first-child {
+                    padding-top: 1vh !important;
+                }
+                td:last-child {
+                    padding-bottom: 1vh !important;
+                }
+                td:before {
+                    position: absolute;
+                    top: 6px;
+                    left: 20px;
+                    width: 50%; 
+                    // padding-right: 10px; 
+                    white-space: nowrap;
+                    text-align: left;
+                }
+                td:nth-of-type(1):before { content: "Moneda"; }
+                td:nth-of-type(2):before { content: "Cantidad"; }
+                td:nth-of-type(3):before { content: "Precio de compra"; }
+                td:nth-of-type(4):before { content: "Precio actual"; }
+                td:nth-of-type(5):before { content: "Valor actual"; }
+                td:nth-of-type(6):before { content: "% Cambio"; }
+            }
+        }
+        .tablaAddCrypto {
+            display: block;
+            tbody, td, tr {
+                display: block;
+            }
+            thead {
+                display: none;
+            }
+            .bodyAddCrypto {
+                border-radius: 5px;
+                padding: 1vh 0;
+                margin-bottom: 1vh;
+                height: auto !important;
+                tr {
+                    height: auto !important;
+                    border-radius: 5px;
+                }
+            }
+            td {
+                border: none;
+                border-radius: 5px;
+                position: relative;
+                padding-left: 40%;
+                margin-right: 0%;
+                margin-bottom: 1vh;
+                width: 100% !important;
+                .monedaInput {
+                    max-width: 90% !important;
+                    margin-right: 4vw !important;
+                    padding: 0 !important;
+                }
+                .cantidadInput input, .precioInput input {
+                    width: 50% !important;
+                    // margin-right: 4vw !important;
+                    padding: 0 !important;
+                }
+            }
+            td:before {
+                position: absolute;
+                top: 6px;
+                left: 20px;
+                width: 30%; 
+                white-space: nowrap;
+                text-align: left;
+            }
+            td:nth-of-type(1):before { content: "Moneda"; }
+            td:nth-of-type(2):before { content: "Cantidad"; }
+            td:nth-of-type(3):before { content: "Precio de compra"; }
+        }
+    }
+}

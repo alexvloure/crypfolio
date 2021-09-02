@@ -1,0 +1,228 @@
+<div class="container">
+    <div class="portfolio-container">
+        <div class="topInfo">
+            <!-- <div>
+                <h3>Balance total</h3>
+            </div> -->
+            <div class="balance" *ngIf="existsData; else noData1">
+                <div class="balanceData">
+                        <div class="balanceFiat">
+                            <span id="fiat">{{valueTActual | money:'EUR'}}</span>
+                            <span id="percentageChangeP" *ngIf="cambioP; else negative"><fa-icon [icon]="arrowUp"></fa-icon>&nbsp;{{cambio}}%</span>
+                            <ng-template #negative>
+                                <span id="percentageChangeN"><fa-icon [icon]="arrowDown"></fa-icon>&nbsp;{{cambio}}%</span>
+                            </ng-template>
+                        </div>
+                        <p class="balanceBTC">{{btcCant}}</p>
+                        <p class="beneficioTotal">Beneficio total: {{(valueTActual - valueTCompra) | money:'EUR'}}</p>
+                </div>
+                <div class="divider"></div>
+                <div class="graph">
+                    <div class="pie" [chart]="donutChart"></div>
+                </div>
+                <div class="top5">
+                    <div class="top5row" *ngFor="let coin of topPortfolio">
+                        <div class="coin">
+                            <img src="{{coin.imagen}}" alt="">
+                            <div class="top5data">
+                                <span class="coin-name"><a [routerLink]="['/details', coin.monedaPortfolio.idMoneda]">{{coin.monedaPortfolio.moneda | firstToUpperCase}}</a></span>
+                                <span class="symbol">{{coin.monedaPortfolio.symbol | uppercase}}</span>
+                            </div>
+                            <div class="porcentaje">{{(coin.precioActual*coin.monedaPortfolio.cantidad)/valueTop*porcentajeTop | percentage }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #noData1>
+                <div class="noData1">
+                    <img src="assets/images/various/Wallet_Isometric.png" alt="" width="400">
+                    <div class="emptyMsg">
+                        <h2>¡Vaya! Parece que aún no hay nada aquí</h2>
+                        <h4>Empieza a añadir criptomonedas para tu registro personal clicando en el botón inferior</h4>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+        <div class="myCoinListContainer">
+            <div class="myCoinList" *ngIf="existsData; else noData2">
+                <table class="table-list">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
+                            <th>Precio medio de compra</th>
+                            <th>Precio actual</th>
+                            <th>Valor actual</th>
+                            <th>Porcentaje de cambio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="tbody-list" *ngFor="let coin of monedaPortfolioValor_arr" [ngClass]="{trDeleteMode: isDeleteValid}" (click)="onDelete(coin.monedaPortfolio.idMoneda)">
+                            <td>
+                                <div class="nameImg">
+                                    <img src="{{coin.imagen}}" alt="" width="24">&nbsp;&nbsp;
+                                    <span class="coin-name-list"><a [routerLink]="['/details', coin.monedaPortfolio.idMoneda]">{{coin.monedaPortfolio.moneda | firstToUpperCase}}</a></span>&nbsp;&nbsp;
+                                    <span class="coin-symbol">{{coin.monedaPortfolio.symbol | uppercase }}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="coin-quantity">{{coin.monedaPortfolio.cantidad}}</span>
+                            </td>
+                            <td>
+                                <span class="coin-avg-buy-price">{{coin.costeMedio | money:'EUR'}}</span>
+                            </td>
+                            <td>
+                                <span class="coin-valor-actual">{{coin.precioActual | money:'EUR'}}</span>
+                            </td>
+                            <td>
+                                <span class="coin-valor-actual">{{coin.precioActual*coin.monedaPortfolio.cantidad | money:'EUR'}}</span>
+                            </td>
+                            <td>
+                                <span class="coin-percentage-change" [ngClass]="{positivo: ((coin.precioActual-coin.costeMedio)/coin.costeMedio*100)>=0, negativo: ((coin.precioActual-coin.costeMedio)/coin.costeMedio*100)<0}">{{((coin.precioActual-coin.costeMedio)/coin.costeMedio*100) | percentage }}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="addCrypto">
+                    <div class="formAddCrypto" *ngIf="!addNotActive">
+                        <form #fR="ngForm" (ngSubmit)="addMonedaPortfolio()">
+                            <table class="tablaAddCrypto">
+                                <thead>
+                                    <tr>
+                                        <th>Criptomoneda</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio de compra</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bodyAddCrypto">
+                                    <tr>  
+                                        <td>
+                                            <div class="monedaInput">
+                                                <ng-autocomplete
+                                                    [data]="monedaLista"
+                                                    [searchKeyword]="keyword"
+                                                    (selected)='selectEvent($event)'
+                                                    placeholder="Selecciona criptomoneda"
+                                                    [itemTemplate]="itemTemplate"
+                                                    [notFoundTemplate]="notFoundTemplate"
+                                                    aria-required="true">
+                                                </ng-autocomplete>
+                                                <ng-template #itemTemplate let-item>
+                                                    <div style="display:flex;flex-direction:row;align-items: center;">
+                                                        <a style="color:white;font-size: 0.85em;" [innerHTML]="item.moneda"></a>
+                                                        <a style="color:#c2c2c2;font-size: 0.8em;padding:0;" [innerHTML]="item.symbol | uppercase"></a>
+                                                    </div>
+                                                </ng-template>
+                                                <ng-template #notFoundTemplate let-notFound>
+                                                    <div [innerHTML]="notFound"></div>
+                                                </ng-template>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="cantidadInput">
+                                                <input type="number" name="cantidad" [(ngModel)]="cantidad" required>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="precioInput">
+                                                <input type="number" name="precio" [(ngModel)]="precio" required>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>                            
+                            </table>
+                            <div class="addError" *ngIf="fR.submitted && addFailed">
+                                <p>Error al añadir. La criptomoneda elegida no está disponible.</p>
+                            </div>
+                            <div class="divButtonAddCrypto">
+                                <button class="btn-cancel" *ngIf="!addNotActive" title="Cancelar" (click)="cancelAddCrypto()">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                <button class="btn-confirm" *ngIf="!addNotActive" title="Confirmar" type="submit" value="submit">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="divShowAddCrypto">
+                        <button class="trash-btn" *ngIf="addNotActive" [ngClass]="{deleteMode: isDeleteValid}" title="{{titleDelete}}" (click)="activateDeleteMode()">
+                            <i class="fas fa-trash-alt" *ngIf="!isDeleteValid"></i>
+                            <i class="fas fa-times" *ngIf="isDeleteValid"></i>
+                        </button>
+                        <button class="add-btn" *ngIf="addNotActive" title="Añadir criptomoneda" (click)="addCrypto()">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <ng-template #noData2>
+                <div class="addCrypto">
+                    <div class="formAddCrypto" *ngIf="!addNotActive">
+                        <form #fR="ngForm" (ngSubmit)="addMonedaPortfolio()">
+                            <table class="tablaAddCrypto">
+                                <thead>
+                                    <tr>
+                                        <th>Criptomoneda</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio de compra</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bodyAddCrypto">
+                                    <tr>  
+                                        <td>
+                                            <div class="monedaInput">
+                                                <ng-autocomplete
+                                                    [data]="monedaLista"
+                                                    [searchKeyword]="keyword"
+                                                    (selected)='selectEvent($event)'
+                                                    placeholder="Selecciona criptomoneda"
+                                                    [itemTemplate]="itemTemplate"
+                                                    [notFoundTemplate]="notFoundTemplate"
+                                                    aria-required="true">
+                                                </ng-autocomplete>
+                                                <ng-template #itemTemplate let-item>
+                                                    <div style="display:flex;flex-direction:row;align-items:center;">
+                                                        <a style="color:white;" [innerHTML]="item.moneda"></a>
+                                                        <a style="color:#c2c2c2;" [innerHTML]="item.symbol | uppercase"></a>
+                                                    </div>
+                                                </ng-template>
+                                                <ng-template #notFoundTemplate let-notFound>
+                                                    <div [innerHTML]="notFound"></div>
+                                                </ng-template>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="cantidadInput">
+                                                <input type="number" name="cantidad" [(ngModel)]="cantidad" required>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="precioInput">
+                                                <input type="number" name="precio" [(ngModel)]="precio" required>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>                            
+                            </table>
+                            <div class="addError" *ngIf="fR.submitted && addFailed">
+                                <p>Error al añadir. La criptomoneda elegida no está disponible.</p>
+                            </div>
+                            <div class="divButtonAddCrypto">
+                                <button class="btn-cancel" *ngIf="!addNotActive" (click)="cancelAddCrypto()">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                <button class="btn-confirm" *ngIf="!addNotActive" value="submit">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div style="display: flex; justify-content: center;" *ngIf="addNotActive" (click)="addCrypto()">
+                        <span style="color:white; cursor: pointer;">Añade tu primera criptomoneda&nbsp;&nbsp;<fa-icon [icon]="plusCircle" style="color: white;"></fa-icon></span>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

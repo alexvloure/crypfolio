@@ -1,0 +1,186 @@
+<div class="container">
+    <div class="details-container" *ngIf="detailsData.length != 0">
+        <span class="rank">Posición #{{detailsData.market_cap_rank}}</span>
+        <div class="info">
+            <div class="name">
+                <img src={{detailsData.image.large}} width="38" height="38">&nbsp;&nbsp;
+                <h2>{{detailsData.name}}&nbsp;&nbsp;<span class="symbol">{{detailsData.symbol}}</span></h2>
+            </div>
+            <div class="marketData">
+                <div class="price">
+                    <h2>&nbsp;{{detailsData.market_data.current_price.eur | money:'EUR'}}&nbsp;&nbsp;</h2>
+                    <span class="change24h" [ngClass]="{'changeDown' : detailsData.market_data.price_change_percentage_24h < 0,
+                        'changeUp' : detailsData.market_data.price_change_percentage_24h > 0}">
+                        {{detailsData.market_data.price_change_percentage_24h | percentageChange}}
+                    </span>
+                </div>
+                <div class="marketCapDiv">
+                    <div class="divider"></div>
+                    <div class="marketCapData">
+                        <p id="marketCapTitle">Capitalización de mercado</p>
+                        <p>{{detailsData.market_data.market_cap.eur | money:'EUR'}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chartjs-container">
+            <canvas baseChart 
+                height="80vh"
+                [datasets]="lineChartData" 
+                [labels]="lineChartLabels" 
+                [options]="lineChartOptions"
+                [colors]="lineChartColors" 
+                [legend]="lineChartLegend" 
+                [chartType]="lineChartType" 
+                [plugins]="lineChartPlugins"
+                >
+            </canvas>
+        </div>
+        <div class="info2">
+            <div class="data">
+                <table>
+                    <tr class="dataRow">
+                        <td>
+                            <p class="dataTitle">Máximo histórico</p>
+                        </td>
+                        <td>
+                            <div class="tooltip top">{{detailsData.market_data.ath.eur | money:'EUR'}}
+                                <span class="tiptext">{{detailsData.market_data.ath_date.eur}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="dataRow">
+                        <td id="middleTd">
+                            <p class="dataTitle">Mínimo histórico</p>
+                        </td>
+                        <td>
+                            <div class="tooltip top">{{detailsData.market_data.atl.eur | money:'EUR'}}
+                                <span class="tiptext">{{detailsData.market_data.atl_date.eur}}</span>
+                            </div>
+                        </td>
+                        
+                    </tr>
+                    <tr class="dataRow">
+                        <td>
+                            <p class="dataTitle">Última hora</p>
+                        </td>
+                        <td>
+                            <p id="upPrice" *ngIf="detailsData.market_data.price_change_percentage_1h_in_currency.eur > 0; else negative">{{detailsData.market_data.price_change_percentage_1h_in_currency.eur | percentageChange }}</p>
+                            <ng-template #negative>
+                                <p id="downPrice">{{detailsData.market_data.price_change_percentage_1h_in_currency.eur | percentageChange}}</p>
+                            </ng-template>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="data">
+                <table>
+                    <tr class="dataRow">
+                        <td>
+                            <p class="dataTitle">Cantidad circulante</p> 
+                        </td>
+                        <td>
+                            <p>{{detailsData.market_data.circulating_supply | numberEs}}</p>
+                        </td>
+                    </tr>
+                    <tr class="dataRow">
+                        <td>
+                            <p class="dataTitle">Suministro máximo</p>
+                        </td>
+                        <td id="middleTd">
+                            <p *ngIf="detailsData.market_data.max_supply != null; else infinity">{{detailsData.market_data.max_supply | numberEs}}</p>
+                            <ng-template #infinity>
+                                <p id="infinity">∞</p>
+                            </ng-template>
+                        </td>
+                    </tr>
+                    <tr class="dataRow">
+                        <td>
+                            <p class="dataTitle">Primer bloque</p> 
+                        </td>
+                        <td>
+                            <p>{{detailsData.genesis_date}}</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="data">
+                <table class="rrss">
+                    <tr class="dataRow">
+                        <td>
+                            <p *ngIf="detailsData.links.subreddit_url != null; else nothing">
+                                <a href="{{detailsData.links.subreddit_url}}" target="_blank">
+                                    <img src="assets/images/various/reddit.png" alt="reddit-logo" width="14">
+                                    &nbsp;Reddit
+                                </a>
+                            </p>
+                            <ng-template #nothing>
+                                <p></p>
+                            </ng-template>
+                        </td>
+                        <td>
+                            <p *ngIf="detailsData.links.homepage[0] != null; else nothing">
+                                <a href="{{detailsData.links.homepage[0]}}" target="_blank">
+                                    &nbsp;Homepage
+                                </a>
+                            </p>
+                            <ng-template #nothing>
+                                <p></p>
+                            </ng-template>
+                        </td>
+                    </tr>
+                    <tr class="dataRow">
+                        <td>
+                            <p *ngIf="detailsData.links.repos_url.github[0] != null; else nothing">
+                                <a href="https://github.com/{{detailsData.id}}" target="_blank">
+                                    <img src="assets/images/various/github.png" alt="github-logo" width="14">
+                                    &nbsp;Github
+                                </a>
+                            </p>
+                            <ng-template #nothing>
+                                <p></p>
+                            </ng-template>
+                        </td>
+                        <td id="middleTd">
+                            <p *ngIf="detailsData.links.blockchain_site[0] != null; else nothing">
+                                <a href="https://blockchair.com/{{detailsData.id}}" target="_blank">
+                                    &nbsp;blockchair.com
+                                </a>
+                            </p>
+                            <ng-template #nothing>
+                                <p></p>
+                            </ng-template>
+                        </td>
+                    </tr>
+                    <tr class="dataRow">
+                        <td>
+                            <p *ngIf="detailsData.links.twitter_screen_name != null; else nothing">
+                                <a href="https://twitter.com/{{detailsData.links.twitter_screen_name}}" target="_blank">
+                                    <img src="assets/images/various/twitter.png" alt="twitter-logo" width="14">
+                                    &nbsp;Twitter
+                                </a>
+                            </p>
+                            <ng-template #nothing>
+                                <p></p>
+                            </ng-template>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="conversion">
+            <div id="title-conversion">Convertir <span id="titleSymbol">{{detailsData.symbol}}</span> a EUR</div>
+            <div class="conversion-inputs">
+                <div class="leftSide">
+                    <input type="number" id="crypto" [ngModel]="cryptoInput" (ngModelChange)="cryptoToEur($event)" placeholder="1">
+                    <div class="cSymbol"><img src="{{detailsData.image.small}}" alt="btc-icon" width="24">&nbsp;&nbsp;{{detailsData.symbol}}</div>
+                </div>
+                <span><fa-icon [icon]="exchangeArrows"></fa-icon></span>
+                <div class="rightSide">
+                    <input type="number" id="eur" [ngModel]="eurInput" (ngModelChange)="eurToCrypto($event)" placeholder="{{detailsData.market_data.current_price.eur}}">
+                    <div class="cSymbol"><img src="assets/images/various/eur.png" alt="eur-icon" width="24">&nbsp;&nbsp;eur</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

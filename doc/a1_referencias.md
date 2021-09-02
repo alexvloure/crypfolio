@@ -1,0 +1,22 @@
+# Referencias
+
+- Documentación do framework Angular para o desenvolvemento do front-end: https://angular.io/docs
+- Documentación de Spring Boot: https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/
+- Documentación de Spring Security: https://docs.spring.io/spring-security/site/docs/current/reference/html5/
+- Documentación do módulo Angular Animations / Angular Platform Browser: https://angular.io/guide/animations
+- Repositorio da librería auth0/angular-jwt: https://github.com/auth0/angular2-jwt
+- Repositorio do compoñente @fortawesome/angular-fontawesome: https://github.com/FortAwesome/angular-fontawesome
+- Repositorio do compoñente ngx-loading-bar: https://github.com/aitboudad/ngx-loading-bar
+- Repositorio do módulo Angular Highcharts para a elaboración de gráficos: https://github.com/highcharts/highcharts-angular
+- Repositorio do módulo ng2-charts para a implementación de gráficos de Chart.js en Angular: https://github.com/valor-software/ng2-charts
+- Repositorio do compoñente angular-ng-autocomplete: https://github.com/gmerabishvili/angular-ng-autocomplete
+- Repositorio do compoñente ngx-lottie que permite a renderización de animacións creadas con After Effects en Angular: https://github.com/ngx-lottie/ngx-lottie
+- Repositorio do compoñente ngx-clipboard: https://github.com/maxisam/ngx-clipboard
+- Páxina oficial de Numeral.js para o formateo de números: http://numeraljs.com/
+- Repositorio de ngx-trend para a implementación de gráficos de tipo "sparkline": https://github.com/scttcper/ngx-trend
+- W3Schools para diversa documentación relacionada con HTML, CSS, SASS, Angular e máis: https://www.w3schools.com/
+- Foro para a resolución de dudas durante a codificación do proxecto: https://stackoverflow.com/
+- Páxina para a búsqueda de compoñentes e módulos dispoñibles para Angular: https://www.npmjs.com/
+- Páxina para escoller gradientes de cores para o uso como fondo: https://webgradients.com/
+- Páxina con recursos de imaxes isométricas gratuitas para usar na aplicación: https://isometric.online/
+- 

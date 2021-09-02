@@ -1,0 +1,223 @@
+.container {
+  height: auto;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  width: 100%;
+  background-color: #181818;
+  background-image: url("/assets/images/background/crypdomBg.png");
+  background-image: linear-gradient(-225deg, #492e5581 0%, #7a18f244 48%, #4901ff4d 100%);
+  background-size: cover;
+
+}
+
+//SLIDER HORIZONTAL
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  position: relative;
+  height: 10vh;
+  margin: 0 3vw 1vh 3vw;
+  border-radius: 5px;
+  font-size: 0.9em;
+  
+  .cards-banner {
+    position:absolute; 
+    // height: 100%;
+    top:0px; 
+    left:0px; 
+    overflow:hidden; 
+    white-space: nowrap;
+    animation: bannermove 40s linear infinite;
+    animation-delay: 2.5s;
+
+    .card {
+      margin: 0 0.5em;
+      width: 300px;
+      // width: 200vw;
+      display: inline-block;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: 5px;
+      color: white;
+      border: 1px solid rgba(105, 105, 105, 0.247);
+
+      .card-name {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 0.5em;
+        span {
+          // font-size: 0.9em;
+          color:#919191;
+        }
+      }
+      .card-data {
+        display: flex;
+        flex-direction: column;
+        // justify-content: flex-start;
+        margin: 0.5em 1em 1em 1em;
+        font-size: 0.85em;
+      }
+    }
+  }
+}
+
+@keyframes bannermove {
+  0% {
+      transform: translate(0, 0);
+  }
+  100% {
+      transform: translate(-50%, 0);
+  }
+}
+
+.scrolling-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+//LISTA CRIPTOS
+.table-container {
+  max-width: 1920px;
+  margin: 0 3vw;
+  margin-bottom: 3vh;
+}
+
+.list-mc {
+  border-spacing: 0;
+  box-shadow: 20px 20px 50px rgba(0,0,0,0.5);
+  color: #fff;
+  width: 100%;
+  margin: 0 auto;
+  background-color: rgba(150,150,150,0.1);
+  border-top: 1px solid rgba(150,150,150,0.3);
+  border-left: 1px solid rgba(150,150,150,0.3);
+  backdrop-filter: blur(5px);
+  border-radius: 5px;
+}
+th {
+  padding: 10px 0;
+  text-transform: uppercase;
+  font-size: small;
+  background-color: rgba(255,255,255,0.1);
+}
+th, td {
+  text-align: right;
+  border-bottom: 1px solid rgba(240,240,255,0.1);
+}
+tbody tr td:first-child, #thNumber {
+  padding-right: 1.5vw;
+  text-align: center;
+}
+#th7Days {
+  text-align: center;
+}
+.ng-star-inserted {
+  text-align: center;
+}
+#thMoneda {
+  text-align: left;
+}
+#notAvailable{
+  font-size: smaller;
+  font-weight: lighter;
+  color: #a5a5a5;
+}
+.list-mc tr:last-child td {
+  border-radius: 5px;
+  border-bottom: none;
+}
+.fila {
+  height: 67px;
+}
+.fila td {
+  padding: 5px 0 5px 0;
+}
+.nameImg {
+  display: flex;
+  align-items: center;
+}
+.detailsButton {
+  cursor: pointer;
+  padding: 2px 5px;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+.simbolo {
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  color: #707070;
+  margin-left: 1.5rem;
+}
+.paginationRow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  color: white;
+}
+ul {
+  list-style: none;
+}
+.pagination {
+  display: flex;
+  justify-content: space-between;
+}
+.pagination li {
+  padding: 1rem 0.5rem;
+  a {
+    cursor: pointer;
+    padding: 0 0.5rem;
+  }
+}
+.pageActive {
+  background-color: #844ba5;
+  color: white;
+  font-weight: bolder;
+  padding: 0 8px;
+  border-radius: 2px;
+}
+.pageNoActive {
+  font-weight: lighter;
+  font-size: 11pt;
+}
+.loadDarkOn {
+  filter: brightness(50%);
+  pointer-events: none;
+}
+
+@media (max-width: 1500px) and (max-height: 850px){
+  .scrolling-wrapper {
+    height: 12vh;
+  }
+}
+
+@media (max-width: 750px){
+  * {
+    font-size: 0.85rem;
+  }
+  .hide {
+    display: none;
+  }
+  .scrolling-wrapper{
+    height: 12vh;
+    margin-bottom: 0;
+    .card-data span {
+      font-size: 0.7rem;
+    }
+  }
+  th, td {
+    text-align: center;
+  }
+  tbody tr td:first-child, #thNumber {
+    padding-left: 2vw;
+  }
+  td:first-child {
+    padding-left: 2vw;
+  }
+  .table-container {
+    margin: 0 auto;
+    padding: 0 2vw;
+  }
+}

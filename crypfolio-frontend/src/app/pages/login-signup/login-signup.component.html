@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="card">
+        <div class="logo" routerLink="">
+            <img src="assets/images/favicon_io/crypdom_icon.png" width="36" alt="">&nbsp;&nbsp;
+            <h2 class="title">Crypfolio<span style="color:#ae00ff;">.</span></h2>
+        </div>
+        <div class="formularioLoginRegister" [@formState]="loginState" [ngClass]="isLogginFail ? 'formularioLoginRegisterFail' : ''">
+            <div class="errMsg" *ngIf="fL.submitted && isLogginFail">
+                <span>Los campos introducidos son incorrectos, por favor, inténtalo de nuevo.</span>
+            </div>
+            <form #fL="ngForm" class="form" (ngSubmit)="onLogin()">
+                <div class="usernameInput">
+                    <input type="text" name="usuarioL" [(ngModel)]="nombreUsuarioL" required>
+                    <span class="floating-label">Usuario</span>
+                </div>
+                <div class="passwordInput">
+                    <input type="password" name="passwordL" [(ngModel)]="passwordL" required>
+                    <span class="floating-label">Contraseña</span>
+                </div>
+                <button class="loginRegisterButton" value="submit" >Iniciar sesión</button>
+                <div class="registroLink">
+                    <span (click)="toggle()">Regístrate en Crypfolio</span>
+                </div>
+            </form>
+        </div>
+        <div class="formularioLoginRegister" [@formState]="registerState" [ngClass]="isRegisterFail ? 'formularioLoginRegisterFail' : ''" *ngIf="!isRegistered; else registerSuccess">
+            <div class="errMsg" *ngIf="fR.submitted && isRegisterFail">
+                <span>{{errMsgR}}</span>
+            </div>
+            <form #fR="ngForm" class="form" (ngSubmit)="onRegister()">
+                <div class="nameInput">
+                    <input type="text" name="nombre" [(ngModel)]="nombre" required>
+                    <span class="floating-label" >Nombre</span>
+                </div>
+                <div class="usernameInputRegister">
+                    <input type="text" name="usuarioR" [(ngModel)]="nombreUsuarioR" required>
+                    <span class="floating-label">Usuario</span>
+                </div>
+                <div class="mailInput">
+                    <input type="text" name="email" [(ngModel)]="email" required>
+                    <span class="floating-label">Correo electrónico</span>
+                </div>
+                <div class="passwordInput">
+                    <input type="password" name="passwordR" [(ngModel)]="passwordR" required>
+                    <span class="floating-label">Contraseña</span>
+                </div>
+                <button class="loginRegisterButton" value="submit">Registrarse</button>
+                <div class="registroLink">
+                    <span (click)="toggle()">Ya tienes cuenta? - Inicia sesión</span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <ng-template #registerSuccess>
+        <div class="registerSuccess">
+            <div class="check">
+                <ng-lottie height="auto" [options]="options"></ng-lottie>
+            </div>
+            <p>¡Enhorabuena, tu cuenta ha sido creada!</p>
+            <p id="msgRedireccion">Redirigiendo a la página de login en {{timeLeft}}...</p>
+        </div>
+    </ng-template>
+</div>

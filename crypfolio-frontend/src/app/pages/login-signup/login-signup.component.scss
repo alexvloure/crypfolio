@@ -1,0 +1,213 @@
+.container {
+    height: 100vh;
+    width: 100%;
+    background-image: url("/assets/images/background/crypdomBg.png");
+    background-image: linear-gradient(-225deg, #492e5554 0%, #7a18f22f 48%, #4901ff36 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .card {
+        width: 20vw;
+        background-color: black;
+        background-color: rgba(150,150,150,0.1);
+        border-left: 1px solid rgba(150,150,150,0.3);
+        border-top: 1px solid rgba(150,150,150,0.3);
+        box-shadow: 20px 20px 50px rgba(0,0,0,0.5);
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        .logo {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 2vh;
+            margin-left: -1vh;
+            cursor: pointer;
+            .title {
+                color: white;
+            }
+        }
+        .formularioLoginRegister {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 6vh;
+            .form {
+                display:flex;
+                flex-direction: column;
+                align-items: center;
+                .nameInput {
+                    position: relative;
+                }
+                .usernameInput {
+                    position: relative;
+                }
+                .usernameInputRegister {
+                    position: relative;
+                    margin-top: 3vh;
+                }
+                .mailInput {
+                    margin-top: 3vh;
+                    position: relative;
+                }
+                .passwordInput {
+                    margin-top: 3vh;
+                    position: relative;
+                    margin-bottom: 4vh;
+                }
+                input {
+                    height: 5vh;
+                    width: 15vw;
+                    font-size: 1em;
+                    padding: 0 0.5em;
+                    padding-top: 1.2em;
+                    appearance: none;
+                    border: none;
+                    border: 1px solid rgb(77, 77, 77);
+                    border-radius: 5px;
+                    // transition: border-bottom 0.5s;
+                    background: none;
+                    color: white;
+                    &:focus {
+                        outline: none;
+                        border: 2px solid #ae00ff;
+                    }
+                    &:focus ~ .floating-label {
+                        color: #ae00ff;
+                    }
+                    &:focus ~ .floating-label, &:not(:focus):valid ~ .floating-label {
+                        top: 4px;
+                        left: 10px;
+                        font-size: 13px;
+                        opacity: 1;
+                    }
+                }
+                input:-webkit-autofill,
+                input:-webkit-autofill:hover,
+                input:-webkit-autofill:focus,
+                input:-webkit-autofill:active {
+                    transition: background-color 5000s ease-in-out 0s;
+                    -webkit-text-fill-color: rgb(255, 255, 255) !important;
+                }
+                .floating-label {
+                    position: absolute;
+                    pointer-events: none;
+                    top: 14px;
+                    left: 12px;
+                    transition: 0.2s ease all;
+                    color: white;
+                    font-family: 'Roboto';
+                    font-weight: lighter;
+                }
+                .registroLink {
+                    margin-top: 2vh;
+                    margin-bottom: 2vh;
+                    font-size: 0.85em;
+                    // color: #844ba5;
+                    color: #c2c2c2;
+                    span {
+                        cursor: pointer;
+                        &:hover {
+                            // color: white;
+                            color: #ae00ff;
+                        }
+                    }
+                }
+                .loginRegisterButton {
+                    all: unset;
+                    cursor: pointer;
+                    padding: 0.6em 5.5em;
+                    // border: 2px solid #844ba5;
+                    border: 2px solid #c2c2c2;
+                    border-radius: 50px;
+                    // color: #844ba5;
+                    color: #c2c2c2;
+                    transition: border 0.5s, background-color 0.5s, color 0.5s;
+                    &:hover {
+                        border: 2px solid #ae00ff;
+                        background-color: #ae00ff;
+                        color: white;
+                    }
+                }
+            }
+        }
+        .formularioLoginRegisterFail {
+            margin-top: 2vh;
+            .errMsg {
+                width: 15vw;
+                padding: 0.5em 1em;
+                font-size: 0.75em;
+                color: white;
+                background-color: #dd000044;
+                border-radius: 5px;
+                margin: 0 auto;
+                margin-bottom: 2vh;
+            }
+        }
+    }
+    .registerSuccess {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        .check {
+            height: 200px;
+            width: 200px;
+        }
+        #msgRedireccion {
+            font-family: 'Roboto';
+            margin-top: 1vh;
+            margin-bottom: 5vh;
+            font-size: 0.75em;
+        }
+    }
+}
+
+@media (max-width: 1700px){
+    .card {
+        width: 25vw !important;
+        .formularioLoginRegister form {
+            // input {
+            //     width: auto !important;
+            // }
+            .loginRegisterButton {
+                padding: 0.5vh 5vw !important;
+            }
+        }
+    }
+}
+
+@media (max-width: 1000px){
+    .card {
+        width: auto !important;
+        padding: 4vh 10vw;
+        .formularioLoginRegister form {
+            input {
+                width: auto !important;
+            }
+            .loginRegisterButton {
+                padding: 0.5vh 5vw !important;
+            }
+        }
+    }
+}
+
+@media (max-width: 750px){
+    .card {
+        width: auto !important;
+        padding: 4vh 10vw;
+        .formularioLoginRegister form {
+            input {
+                width: auto !important;
+            }
+            .loginRegisterButton {
+                padding: 0.8vh 15vw !important;
+            }
+            .registroLink {
+                margin-top: 3vh;
+                margin-bottom: 3vh;
+            }
+        }
+    }
+}

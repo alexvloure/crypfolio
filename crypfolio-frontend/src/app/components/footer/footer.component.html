@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="donaciones">
+        <div>Invítame a un café:</div>
+        <div class="botonesDonacion">
+            <div class="btc" (click)="donateBTCWindowToggle()">
+                <img src="assets/images/btcAddress/1024px-Bitcoin.svg.png" width="22" alt="">    
+                <p>Bitcoin</p>
+            </div>
+            <div class="eth" (click)="donateETHWindowToggle()">
+                <img src="assets/images/btcAddress/Ethereum-Logo-PNG.png" width="22" alt="">    
+                <p>Ethereum</p>
+            </div>
+        </div>
+        <div class="donateWindow btc" *ngIf="isDonateBTCActive">
+            <div style="padding: 5px 10px;">
+                <span style="color:white;">bc1q0547ez2an4qvmng2zelq7l093qzuwv9efwcxyj</span>&nbsp;&nbsp;
+                <fa-icon title="Copiar dirección" [icon]="copy" style="cursor:pointer;color:white;" ngxClipboard [cbContent]="'bc1q0547ez2an4qvmng2zelq7l093qzuwv9efwcxyj'"></fa-icon>
+            </div>
+        </div>
+        <div class="donateWindow eth" *ngIf="isDonateETHActive">
+            <div style="padding: 5px 10px;">
+                <span style="color:white;" #copyETH>0x8D7EFFF04873f88B84ce1173fF2Ad92eD19c5153</span>&nbsp;&nbsp;
+                <fa-icon title="Copiar dirección" [icon]="copy" style="cursor:pointer;color:white;" ngxClipboard [cbContent]="'0x8D7EFFF04873f88B84ce1173fF2Ad92eD19c5153'"></fa-icon>
+            </div>
+        </div>
+    </div>
+    <div class="info">
+        <div class="logo" (click)="goTop()">
+            <img src="assets/images/favicon_io/crypdom_icon.png" width="28" alt="">
+            <h3 class="title">Crypfolio<span style="color:#ae00ff;">.</span></h3>
+        </div>
+        <div class="devInfo">
+            <span>Web desarrollada por Alejandro Viño Loureiro</span>
+            <span>Contáctame: alejandrovloure@gmail.com</span>
+        </div>
+    </div>
+</div>

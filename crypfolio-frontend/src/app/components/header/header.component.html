@@ -1,0 +1,31 @@
+<div class="header">
+    <nav class="navbar">
+      <div class="logo" routerLink="">
+        <img src="assets/images/favicon_io/crypdom_icon.png" width="36" alt="">
+        <h2 class="title">Crypfolio<span style="color:#ae00ff;">.</span></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="nav-links hide">
+        <ul>
+          <li routerLink="">Monedas</li>
+          <li routerLink="/auth" *ngIf="!isLoggedIn">Iniciar sesión</li>
+          <div *ngIf="isLoggedIn">
+            <li routerLink="/portfolio" >Mi cartera</li>
+            <li (click)="logOut()">Cerrar sesión</li>
+          </div>
+        </ul>
+      </div>
+      <div class="hamburger-menu">
+        <div class="hamburger" (click)="toggleMenu()">
+          <fa-icon id="hamb-icon" [icon]="hamburger"></fa-icon>
+          <input type="checkbox" id="hamburger">
+        </div>
+        <div class="hamburger-links" *ngIf="isOpen">
+            <a routerLink="">Monedas</a>
+            <a routerLink="/auth" *ngIf="!isLoggedIn">Iniciar sesión</a>
+            <a routerLink="/portfolio" *ngIf="isLoggedIn">Mi cartera</a>
+            <a (click)="logOut()" *ngIf="isLoggedIn">Cerrar sesión</a>
+        </div>
+      </div>
+    </nav>
+  </div>
